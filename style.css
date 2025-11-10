@@ -1,5 +1,5 @@
 :root {
-  --bs-primary: #c40000; /* Diep rood */
+  --bs-primary: #c40000;
 }
 
 body {
@@ -8,12 +8,14 @@ body {
 }
 
 h1 {
+  font-weight: bold;
+}
+
+#result h4 {
   color: var(--bs-primary);
 }
 
-.result-box {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
+#result p {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
