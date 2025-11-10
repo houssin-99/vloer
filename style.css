@@ -1,0 +1,19 @@
+:root {
+  --bs-primary: #c40000; /* Diep rood */
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+  color: var(--bs-primary);
+}
+
+.result-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
