@@ -4,18 +4,24 @@ document.getElementById("tileForm").addEventListener("submit", function (e) {
   const area = parseFloat(document.getElementById("area").value);
   const tileSizeInput = document.getElementById("tileSize").value;
   const groutWidth = parseFloat(document.getElementById("groutWidth").value);
+  const resultBox = document.getElementById("result");
 
-  const pricePerM2 = 53.75; // hardcoded prijs
-  const gluePerM2 = 3.5; // kg lijm per m²
+  // Validatie
+  if (!area || !tileSizeInput || !groutWidth || !tileSizeInput.includes("x")) {
+    resultBox.classList.add("d-none");
+    return;
+  }
 
-  // Tegelgrootte verwerken
+  const pricePerM2 = 53.75;
+  const gluePerM2 = 3.5;
+
   const [tileWidth, tileHeight] = tileSizeInput.split("x").map(Number);
   const tileWidthM = (tileWidth + groutWidth) / 100;
   const tileHeightM = (tileHeight + groutWidth) / 100;
   const tileArea = tileWidthM * tileHeightM;
 
   const tilesNeeded = Math.ceil(area / tileArea);
-  const tilesPerBox = 1 / tileArea * 1.2; // 20% marge
+  const tilesPerBox = 1 / tileArea * 1.2;
   const boxesNeeded = Math.ceil(tilesNeeded / tilesPerBox);
 
   const glueNeeded = Math.ceil(area * gluePerM2);
@@ -29,8 +35,9 @@ document.getElementById("tileForm").addEventListener("submit", function (e) {
   const discount = subtotal * discountRate;
   const total = subtotal - discount;
 
-  document.getElementById("result").classList.remove("d-none");
-  document.getElementById("result").innerHTML = `
+  // Toon resultaat
+  resultBox.classList.remove("d-none");
+  resultBox.innerHTML = `
     <h4 class="mb-3">📊 Berekening</h4>
     <p><strong>Aantal dozen tegels:</strong> ${boxesNeeded} dozen</p>
     <p><strong>Tegellijm benodigd:</strong> ${glueNeeded} kg</p>
@@ -38,4 +45,7 @@ document.getElementById("tileForm").addEventListener("submit", function (e) {
     <p><strong>Korting (${discountRate * 100}%):</strong> -€ ${discount.toFixed(2)}</p>
     <p><strong>Totaalprijs:</strong> <span class="text-success fw-bold">€ ${total.toFixed(2)}</span></p>
   `;
+
+  // Scroll naar resultaat
+  resultBox.scrollIntoView({ behavior: "smooth" });
 });
