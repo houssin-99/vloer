@@ -6,7 +6,7 @@ const TEGELS_PER_DOOS = 10;
 
 const form = document.getElementById("calcForm");
 const resultaat = document.getElementById("resultaat");
-
+// Formulier submitten en e.prevent default is we doen de berekening zelf
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -30,7 +30,8 @@ form.addEventListener("submit", function (e) {
 
   const subtotaal =
     oppervlakte * PRIJS_PER_M2 + lijmBenodigd * PRIJS_LIJM_PER_KG;
-
+    
+  // kortign met ternary operator
   const kortingPerc =
     subtotaal < 1000 ? 2 : subtotaal <= 5000 ? 5 : 10;
 
