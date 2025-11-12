@@ -30,10 +30,10 @@ form.addEventListener("submit", function (e) {
 
   const subtotaal =
     oppervlakte * PRIJS_PER_M2 + lijmBenodigd * PRIJS_LIJM_PER_KG;
-    
+
   // kortign met ternary operator
   const kortingPerc =
-    subtotaal < 1000 ? 2 : subtotaal <= 5000 ? 5 : 10;
+    subtotaal <= 1000 ? 2 : subtotaal <= 5000 ? 5 : 10;
 
   const korting = (subtotaal * kortingPerc) / 100;
   const totaal = subtotaal - korting;
